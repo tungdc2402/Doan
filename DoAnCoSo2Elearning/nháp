@@ -1,0 +1,111 @@
+ <!-- Review Section -->
+                <div class="review-section">
+                    <h3 class="review-header">Đánh giá của học viên</h3>
+
+                    <div class="rating-dashboard">
+                        <div style="text-align:center;">
+                            <div class="big-score"><?php echo $avg_rating; ?></div>
+                            <div class="stars-gold">
+                                <?php for($i=1;$i<=5;$i++) echo ($i<=round($avg_rating))?'<i class="fa-solid fa-star"></i>':'<i class="fa-regular fa-star"></i>'; ?>
+                            </div>
+                            <div style="color:#b4690e; font-weight:bold; font-size:14px; margin-top:5px;">Xếp hạng</div>
+                        </div>
+
+                        <div style="flex:1; max-width:500px; margin: 0 30px;">
+                            <?php for($s=5;$s>=1;$s--):
+                                $pct = ($total_reviews > 0) ? ($star_counts[$s]/$total_reviews*100) : 0; ?>
+                                <div class="bar-item">
+                                    <div style="width:20px;"><?php echo $s; ?> <i class="fa-solid fa-star" style="font-size:10px;"></i></div>
+                                    <div class="progress-bg"><div class="progress-fill" style="width:<?php echo $pct; ?>%"></div></div>
+                                    <div style="width:40px; text-align:right; color:#2d2f31;"><?php echo round($pct); ?>%</div>
+                                </div>
+                            <?php endfor; ?>
+                        </div>
+
+                        <div>
+                            <button type="button" class="btn-open-review" onclick="toggleReviewForm()">Đánh giá</button>
+                        </div>
+                    </div>
+
+                    <!-- FORM REVIEW (Thêm enctype để upload file) -->
+                    <div id="form-review-container" class="form-review-container">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            <h4 style="margin-top:0; color:#00235a;">Gửi đánh giá của bạn</h4>
+
+                            <div style="margin-bottom: 15px;">
+                                <label>1. Đánh giá của bạn về khóa học</label>
+                                <div class="star-rating-input">
+                                    <i class="fa-regular fa-star star-icon" data-value="1"></i>
+                                    <i class="fa-regular fa-star star-icon" data-value="2"></i>
+                                    <i class="fa-regular fa-star star-icon" data-value="3"></i>
+                                    <i class="fa-regular fa-star star-icon" data-value="4"></i>
+                                    <i class="fa-regular fa-star star-icon" data-value="5"></i>
+                                    <input type="hidden" name="rating_value" id="rating_value" value="5">
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label>2. Viết cảm nhận của bạn về khóa học</label>
+                                <textarea name="cam_nhan" class="form-control" rows="4" placeholder="Cảm nhận của bạn..." required></textarea>
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <label>3. Thông tin cá nhân của bạn</label>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="font-size:13px; font-weight:normal;">Họ và tên:<span style="color:red">*</span></label>
+                                    <input type="text" name="ho_ten" class="form-control" required>
+                                </div>
+                                <div style="display: flex; gap: 20px;">
+                                    <div style="flex:1;">
+                                        <label style="font-size:13px; font-weight:normal;">Số điện thoại:</label>
+                                        <input type="text" name="sdt" class="form-control">
+                                    </div>
+                                    <div style="flex:1;">
+                                        <label style="font-size:13px; font-weight:normal;">Email</label>
+                                        <input type="email" name="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <!-- Input file ẩn -->
+                                <input type="file" name="review_img" id="review_img_input" style="display:none;" accept="image/*" onchange="previewImage(this)">
+
+                                <!-- Nút kích hoạt input file -->
+                                <button type="button" class="btn-camera" onclick="document.getElementById('review_img_input').click()" title="Thêm ảnh">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+
+                                <button type="submit" name="btn_submit_review" class="btn-submit-review">Gửi đánh giá</button>
+
+                                <!-- Hiển thị tên file đã chọn -->
+                                <span id="file-name-display" class="file-name-display"></span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Danh sách Review -->
+                    <div class="review-list" style="margin-top:30px;">
+                        <?php foreach ($reviews as $rv): ?>
+                            <div class="review-item">
+                                <div class="user-avatar" style="background: #<?php echo substr(md5($rv['ten_user']),0,6); ?>">
+                                    <?php echo htmlspecialchars($rv['avatar_text']); ?>
+                                </div>
+                                <div class="review-content">
+                                    <div style="font-weight:bold;"><?php echo htmlspecialchars($rv['ten_user']); ?></div>
+                                    <div class="stars-gold" style="font-size:12px; margin: 3px 0;">
+                                        <?php for($i=1;$i<=5;$i++) echo ($i<=$rv['so_sao'])?'<i class="fa-solid fa-star"></i>':'<i class="fa-regular fa-star" style="color:#ccc"></i>'; ?>
+                                    </div>
+                                    <div class="review-text"><?php echo nl2br(htmlspecialchars($rv['noi_dung'])); ?></div>
+
+                                    <!-- HIỂN THỊ ẢNH NẾU CÓ -->
+                                    <?php if(!empty($rv['hinh_anh'])): ?>
+                                        <img src="uploads/<?php echo htmlspecialchars($rv['hinh_anh']); ?>" class="review-image" alt="Ảnh đánh giá" onclick="window.open(this.src)">
+                                    <?php endif; ?>
+
+                                    <div class="review-date"><?php echo date('d/m/Y', strtotime($rv['ngay_tao'])); ?></div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>

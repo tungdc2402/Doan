@@ -1,0 +1,541 @@
+:root {
+    --ud-purple: #a435f0;
+    --ud-purple-hover: #8710d8;
+    --ud-black: #1c1d1f;
+    --ud-gray: #6a6f73;
+    --ud-light-gray: #f7f9fa;
+    --ud-border: #d1d7dc;
+    --ud-yellow: #b4690e; /* Màu sao đậm hơn chút cho dễ nhìn */
+    --font-main: 'SF Pro Text', -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+
+
+.main-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #0056b3;
+    font-weight: 800;
+    margin-bottom: 0;
+    line-height: 1;
+}
+.logo h1 span { color: #ff6b00; }
+.logo p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Navigation */
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-transform: uppercase;
+    padding: 10px 0;
+    position: relative;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    color: #0056b3;
+}
+
+/* Search & Cart */
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    margin-right: 20px;
+}
+
+.search-box input {
+    padding: 8px 35px 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    width: 200px;
+}
+
+.search-box button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+}
+
+.cart-icon {
+    font-size: 20px;
+    color: #333;
+    position: relative;
+}
+
+.cart-icon span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff0000;
+    color: #fff;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-btn { display: none; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-main); color: var(--ud-black); background-color: #fff; line-height: 1.4; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- HEADER / NAVBAR --- */
+header {
+    display: flex; align-items: center; height: 72px; padding: 0 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: fixed; top: 0; width: 100%;
+    background: #fff; z-index: 1000;
+}
+.logo { font-size: 24px; font-weight: bold; margin-right: 30px; cursor: pointer;}
+.logo span { color: var(--ud-purple); }
+.search-bar { flex: 1; position: relative; margin: 0 20px; }
+.search-bar input {
+    width: 100%; height: 48px; border: 1px solid #000; border-radius: 24px;
+    padding: 0 50px; background: #f7f9fa; font-size: 14px;
+}
+.search-bar i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--ud-gray); }
+.nav-actions { display: flex; gap: 15px; align-items: center; font-size: 14px; font-weight: 500; }
+.btn { padding: 10px 20px; border: 1px solid var(--ud-black); font-weight: bold; cursor: pointer; white-space: nowrap; }
+.btn-white { background: #fff; color: var(--ud-black); }
+.btn-white:hover { background-color: #f0f0f0; }
+.btn-black { background: var(--ud-black); color: #fff; }
+.btn-black:hover { background-color: #333; }
+
+/* Spacer để nội dung không bị Header che */
+.main-content { margin-top: 72px; min-height: 80vh; }
+
+/* --- CSS CHO TRANG LISTING (index.html) --- */
+.container { max-width: 1340px; margin: 0 auto; padding: 40px 24px; }
+.section-title { font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+
+.course-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px;
+}
+.course-card { cursor: pointer; transition: opacity 0.2s; }
+.course-card:hover .course-img { opacity: 0.8; }
+.course-img-wrapper { border: 1px solid var(--ud-border); margin-bottom: 10px; overflow: hidden; }
+.course-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+.course-title { font-weight: 700; font-size: 16px; margin-bottom: 5px; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.course-author { font-size: 12px; color: var(--ud-gray); margin-bottom: 5px; }
+.course-rating { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; font-size: 12px; font-weight: 700; color: var(--ud-yellow); }
+.course-rating i { color: #e59819; }
+.course-rating .reviews { color: var(--ud-gray); font-weight: 400; }
+.course-price { font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+.old-price { font-size: 14px; color: var(--ud-gray); text-decoration: line-through; font-weight: 400; }
+.badge { background-color: #eceb98; color: #3d3c0a; font-size: 12px; font-weight: 700; padding: 4px 8px; display: inline-block; margin-top: 5px; }
+
+/* --- CSS CHO TRANG DETAIL (detail.html) --- */
+.course-hero { background-color: var(--ud-black); color: #fff; padding: 60px 24px; position: relative; }
+.hero-content { max-width: 1184px; margin: 0 auto; display: flex; }
+.hero-text { width: 60%; padding-right: 40px; }
+.breadcrumb { color: #cec0fc; font-size: 14px; font-weight: 700; margin-bottom: 15px; }
+.hero-title { font-size: 32px; font-weight: 700; margin-bottom: 15px; }
+.hero-desc { font-size: 18px; margin-bottom: 20px; line-height: 1.5; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; font-size: 14px; margin-bottom: 15px; }
+.hero-stats a { color: #cec0fc; text-decoration: underline; }
+
+/* STICKY SIDEBAR */
+.sidebar-container {
+    position: absolute; right: 0; top: 0; width: 100%; height: 100%; pointer-events: none;
+    max-width: 1184px; margin: 0 auto; /* Căn giữa theo hero content */
+}
+/* Wrapper để căn phải */
+.sidebar-wrapper {
+    position: absolute; right: 24px; top: 20px; width: 340px; pointer-events: auto;
+}
+.sidebar-card {
+    background: #fff; border: 1px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky; top: 90px; /* Dính khi cuộn */
+}
+.sidebar-media { position: relative; cursor: pointer; }
+.sidebar-media img { width: 100%; display: block; }
+.play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+}
+.sidebar-content { padding: 24px; color: var(--ud-black); }
+.price-large { font-size: 32px; font-weight: 700; }
+.btn-purple { width: 100%; background: var(--ud-purple); color: #fff; border: none; padding: 15px; font-weight: 700; font-size: 16px; cursor: pointer; margin-bottom: 10px; }
+.btn-purple:hover { background: var(--ud-purple-hover); }
+.includes-list li { margin-bottom: 10px; font-size: 14px; display: flex; gap: 10px; align-items: center; }
+
+/* DETAIL MAIN CONTENT */
+.detail-container { max-width: 1184px; margin: 0 auto; padding: 40px 24px; display: flex; }
+.detail-left { width: 60%; padding-right: 40px; }
+.box-learn { border: 1px solid var(--ud-border); padding: 24px; margin-bottom: 40px; }
+.learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px; }
+
+/* ACCORDION (Content) */
+.curriculum-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.accordion-item { border: 1px solid var(--ud-border); border-bottom: none; }
+.accordion-item:last-child { border-bottom: 1px solid var(--ud-border); }
+.accordion-trigger {
+    background: #f7f9fa; padding: 15px 20px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; font-weight: 700;
+}
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #fff; }
+.accordion-item.active .trigger-icon { transform: rotate(180deg); }
+.accordion-item.active .accordion-content { border-top: 1px solid var(--ud-border); }
+.lecture-list { padding: 10px 20px; }
+.lecture-item { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
+
+/* FOOTER */
+footer { background: var(--ud-black); color: #fff; padding: 30px 24px; margin-top: 50px; }
+
+/* RESPONSIVE */
+@media (max-width: 1080px) {
+    .sidebar-wrapper { display: none; } /* Ẩn sidebar trên mobile cho đơn giản */
+    .hero-text, .detail-left { width: 100%; padding-right: 0; }
+    .search-bar, .nav-actions a { display: none; }
+}
+
+
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    border: 1px solid transparent; /* Ẩn viền lúc đầu */
+    border-radius: 8px;
+    padding: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: #fff;
+}
+
+/* Hiệu ứng hover cho thẻ sách */
+.book-card:hover {
+    border-color: var(--ud-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+}
+
+/* Khung chứa ảnh bìa sách (Tỉ lệ dọc) */
+.book-cover-wrapper {
+    height: 260px;
+    background-color: #f7f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ảnh bìa sách có bóng đổ 3D nhẹ */
+.book-cover {
+    max-height: 90%;
+    max-width: 85%;
+    object-fit: contain;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.2); /* Hiệu ứng gáy sách */
+    transition: transform 0.3s;
+}
+
+.book-card:hover .book-cover {
+    transform: scale(1.05);
+}
+
+/* Loại sách (Ebook/Sách giấy) */
+.book-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--ud-gray);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.book-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 42px; /* Giới hạn chiều cao tiêu đề */
+}
+
+/* Nút mua nhanh (Chỉ hiện khi hover hoặc trên mobile) */
+.book-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid var(--ud-black);
+    color: var(--ud-black);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0; /* Ẩn mặc định */
+    transition: all 0.2s;
+}
+
+.book-btn:hover {
+    background-color: var(--ud-light-gray);
+}
+
+.book-card:hover .book-btn {
+    opacity: 1; /* Hiện khi di chuột vào */
+}
+
+/* Responsive cho mobile: Hiện luôn nút mua */
+@media (max-width: 768px) {
+    .book-btn { opacity: 1; border-color: var(--ud-border); }
+    .book-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } /* 2 cột trên mobile */
+    .book-cover-wrapper { height: 200px; }
+}
+/* --- BIẾN & RESET --- */
+:root {
+    --ud-purple: #a435f0;
+    --ud-black: #1c1d1f;
+    --ud-gray: #6a6f73;
+    --ud-light-gray: #f7f9fa;
+    --ud-border: #d1d7dc;
+    --ud-yellow: #b4690e;
+    --brand-blue: #0056b3;
+    --brand-orange: #ff6b00;
+    --font-main: 'SF Pro Text', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-main); color: var(--ud-black); background-color: #fff; line-height: 1.4; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- COMMON CONTAINER (Quan trọng để căn giữa) --- */
+.container {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- HEADER --- */
+.main-header {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.logo a { display: block; text-align: left; }
+.logo h1 { font-size: 22px; color: var(--brand-blue); font-weight: 800; line-height: 1; }
+.logo h1 span { color: var(--brand-orange); }
+.logo p { font-size: 10px; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Navbar Desktop */
+.navbar ul { display: flex; gap: 20px; }
+.navbar a {
+    font-size: 14px; font-weight: 500; color: var(--ud-black);
+    padding: 10px 5px; transition: color 0.2s;
+}
+.navbar a:hover, .navbar a.active { color: var(--brand-blue); }
+
+/* Header Actions */
+.header-actions { display: flex; align-items: center; gap: 15px; }
+
+.search-box { position: relative; display: none; } /* Hiện ở màn hình lớn */
+@media (min-width: 768px) { .search-box { display: block; } }
+
+.search-box input {
+    padding: 10px 40px 10px 20px;
+    border: 1px solid var(--ud-black);
+    border-radius: 99px;
+    font-size: 13px;
+    width: 250px;
+    background: #f7f9fa;
+}
+.search-box button {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer; color: var(--ud-gray);
+}
+
+.cart-icon a { position: relative; font-size: 20px; color: var(--ud-black); }
+.cart-icon span {
+    position: absolute; top: -8px; right: -8px;
+    background: var(--ud-purple); color: #fff;
+    font-size: 10px; width: 18px; height: 18px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+
+.mobile-menu-btn { display: none; font-size: 20px; cursor: pointer; }
+
+/* --- BODY CONTENT --- */
+.main-content { margin-top: 100px; /* Đẩy nội dung xuống dưới header */ min-height: 80vh; }
+
+.section-separator { margin-top: 60px; } /* Khoảng cách giữa phần khóa học và sách */
+
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
+.section-title { font-size: 24px; font-weight: 700; color: var(--ud-black); margin-bottom: 0; }
+.see-all { font-size: 14px; font-weight: 700; color: var(--brand-blue); }
+.see-all:hover { color: #003d82; }
+
+/* --- GRID SYSTEM (Dùng chung cho cả 2 phần) --- */
+.course-grid, .book-grid {
+    display: grid;
+    gap: 32px;
+}
+/* Responsive Grid logic */
+.course-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.book-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+/* --- CARD STYLES --- */
+.course-card, .book-card { cursor: pointer; transition: all 0.2s; }
+.course-img-wrapper { border: 1px solid var(--ud-border); margin-bottom: 10px; overflow: hidden; }
+.course-img { width: 100%; height: 150px; object-fit: cover; display: block; transition: transform 0.3s; }
+.course-card:hover .course-img { transform: scale(1.05); }
+
+.course-title { font-weight: 700; font-size: 16px; margin-bottom: 5px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.course-author { font-size: 12px; color: var(--ud-gray); margin-bottom: 5px; }
+
+.course-rating { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; font-size: 13px; font-weight: 700; color: #b4690e; }
+.stars { color: #e59819; font-size: 12px; }
+.reviews { font-weight: 400; color: var(--ud-gray); }
+
+.course-price { font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 10px; }
+.old-price { font-size: 13px; color: var(--ud-gray); text-decoration: line-through; font-weight: 400; }
+.badge { background-color: #eceb98; color: #3d3c0a; font-size: 10px; font-weight: 700; padding: 4px 8px; display: inline-block; margin-top: 8px; }
+
+/* === HERO BANNER === */
+.hero-banner {
+    background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* Ảnh minh họa physics */
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content {
+    width: 100%;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.hero-btns .btn {
+    margin: 0 10px;
+}
+
+
+/* --- BOOK SPECIFIC STYLES --- */
+.book-card {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+.book-card:hover {
+    border-color: var(--ud-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.book-cover-wrapper {
+    height: 250px;
+    background-color: #f7f9fa;
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 12px; border-radius: 4px; overflow: hidden;
+}
+.book-cover { max-height: 90%; max-width: 85%; box-shadow: 4px 4px 8px rgba(0,0,0,0.2); transition: transform 0.3s; }
+.book-card:hover .book-cover { transform: scale(1.08) rotate(1deg); }
+
+.book-type { font-size: 10px; text-transform: uppercase; color: var(--ud-gray); font-weight: 700; letter-spacing: 0.5px; }
+.book-title { font-size: 15px; margin-bottom: 5px; height: 40px; } /* Cố định chiều cao tiêu đề cho đều */
+
+/* Nút Xem chi tiết của sách */
+.book-btn {
+    width: 100%; margin-top: 10px; padding: 8px;
+    background-color: #fff; border: 1px solid var(--ud-black);
+    color: var(--ud-black); font-weight: 700; font-size: 13px; cursor: pointer;
+    transition: all 0.2s; opacity: 0; transform: translateY(10px);
+}
+.book-card:hover .book-btn { opacity: 1; transform: translateY(0); }
+.book-btn:hover { background-color: var(--ud-black); color: #fff; }
+
+/* --- FOOTER --- */
+footer { background: var(--ud-black); color: #fff; padding: 40px 0; margin-top: 60px; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .navbar { display: none; } /* Ẩn menu trên mobile */
+    .mobile-menu-btn { display: block; }
+    .course-grid { grid-template-columns: 1fr; } /* 1 cột khóa học */
+    .book-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } /* 2 cột sách */
+    .book-btn { opacity: 1; transform: none; } /* Mobile hiện luôn nút */
+    .section-header { align-items: flex-start; flex-direction: column; }
+    .see-all { margin-top: 5px; }
+}
